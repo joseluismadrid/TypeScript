@@ -223,3 +223,29 @@ do {
     persona1.estado= Estado.Terminado
     
 } while(persona1.estado != Estado.Terminado);
+
+
+// !Funciones
+/**
+ *  ? Funcion que muestra un saludo por consola
+ */
+function saludar (){
+    let nombre = "Maria fernanda"
+    console.log( `Hola Mundo! ${nombre}`)
+}
+// ! Invocacion de la funcion 
+saludar()
+
+/**
+ * 
+ * @param nombre 
+ */
+function saludarConparametros(nombre:string){
+  console.log( `Hola Mundo! ${nombre}`)
+}
+saludarConparametros("Martin jose")
+// Sobrecarga de funciones
+
+// Funciones asincronas
+
+// Funciones Generadoras
