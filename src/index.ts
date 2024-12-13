@@ -83,6 +83,39 @@ let persona1: Persona = {
     estado: Estado.Pendiente
 }
 console.log("Prsona:",persona1.nombre, persona1.apellido, persona1.edad, persona1.estado);
+
+// ! Asignacion multiples de variable
+
+let Mitarea = {
+    titulo: "Mitarea",
+    estado: Estado.EnProceso,
+    urgencia: 1
+}
+// ! Factor Spread (Prpagacion)
+
+// *En asignacin de variables
+let  { titulo, estado, urgencia} = Mitarea;
+
+//  En Listas
+let listadecomprasLunes: string[]= ["leche","Patatas"];
+let listadecomprasMartes: string[] = [...listadecomprasLunes, "Pan", "Huevos"]
+let listadecomprasMiercoles: string[] = ["Carnes","pescado"] 
+let listadelaSemana = [...listadecomprasLunes, ...listadecomprasMartes, ...listadecomprasMiercoles]
+
+// !   En Objectos 
+  let estadoApp = {
+     usuario : "Admin",
+     session: 3,
+     jwt: "bernsddff123****"
+  }
+
+  // ! cambiar un valor por propagación 
+  let nuevoEstado ={
+    ...estadoApp,
+    session: 4
+  }
+
+
 // ! Type de typeScripts
 
 type ProductoType = {
@@ -121,3 +154,72 @@ if(coche.anio < 2010){
 
 
 
+//  ! Switch
+
+switch (persona1.estado) {
+    case Estado.Terminado: 
+        console.log("La persona termino su tarea")
+        break;
+    case Estado.Pendiente:
+        console.log("La persona tiene incompleta su tarea")
+        break;
+    case Estado.EnProceso:
+        console.log("La persona acabo de iniciar  su tarea")
+        break;
+    default:
+        break;
+}
+
+// ! blucles
+
+let listaTareasNuevas: Persona[]=[
+    {
+        nombre: "Julio cesar",
+        apellido: "Acosta lopez",
+        edad: 20,
+        estado: Estado.EnProceso
+    },
+    {
+        nombre: "Felipe jose",
+        apellido: "Acosta perez",
+        edad: 30,
+        estado: Estado.Pendiente
+    },
+    {
+        nombre: "Julian ",
+        apellido: " perez",
+        edad: 40,
+        estado: Estado.Terminado
+    }
+]
+
+// ! For clasico
+for (let index = 0; index < listaTareasNuevas.length; index++) {
+    const tarea = listaTareasNuevas[index];
+    console.log(`${index} - ${tarea.nombre}`)
+    
+}
+// !   ForEach
+listaTareasNuevas.forEach((tarea: Persona, index: number,)=> {
+    console.log(`${index} - ${tarea.nombre}`)
+})
+
+
+//  ! Bucle While
+
+while (persona1.estado != Estado.Terminado) {
+    persona1.edad++;
+    if ( persona1.edad == 100 ){
+        persona1.estado= Estado.Terminado
+        break;
+    }else{
+        persona1.edad ++;
+    }
+}
+
+// !  Do while  ( se ejecuta al menos una vecez)
+do {
+    persona1.edad ++;
+    persona1.estado= Estado.Terminado
+    
+} while(persona1.estado != Estado.Terminado);
