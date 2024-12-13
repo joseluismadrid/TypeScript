@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "tsnode": "cd src && ts-node index.ts",
-    "start":"nodemon",
+    "start": "nodemon",
     "transpilation": "tsc"
   },
   "keywords": [],
@@ -16,5 +16,8 @@
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
   }
 }
