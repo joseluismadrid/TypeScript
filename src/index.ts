@@ -1,178 +1,160 @@
 
-//TODO:  Comentarios en  Ts
+//SECTION - Practica De TypeScript
 
-// * Comentario de una sola linea
+//NOTE - Variables
 
-/**
- *  * Comentario de varias lineas
- */
-console.log('Hola pirobos')
+var nombre: string = "jose luis "; // varable globlal
+let apellido: string = "madrid lodoño "; // varaible local
+const edads: any = 31; // variable constante
+let edad: any = 31; // variable constante
+var error: boolean; // variable booleana 
+error = false; // Asignacion de valor 
 
-// ! Declaracion de variables:
-//  ? Definicion de tipo 
-// *  Variable : tipo de dato = valor
-var nombre: string = "Jose luis "; // * Variable global
-let apellido: string = "Madrid"; // * Variable local
-const edad: any = 30; // * Variable constante
-console.log("Hola! " + nombre, apellido + " Tu edad es " + edad); // * Concatenacion de variables
-console.log("¿Como estas?", nombre, apellido, "?"); // * Concatenacion de variables
-console.log(`¿Como han te esta llendo ${nombre} ${apellido} tu tienes: ${edad}`); // * Template string
+//NOTE -  Concatención E impresion de valor
 
-var error: boolean; // * Variable booleana
-error = true; // * Asignacion de valor
-console.log(`Hay un erro ${error}`); // * Imprimir valor
-   
+console.log(" !Hola " + nombre, apellido + " Tu edad es " + edads, '\n'); // concatenacion de variables  con el usu de simbolo mas
+console.log(" ¿Como estas ", nombre, apellido, "?", '\n'); // concarenación de variables con el usu del simbolo de puntuacion la coma solamente 
+console.log(`¿ Como te esta llendo ${nombre} ${apellido} tu tienes ${edad}`, '\n'); // Concatención usando el template string
+console.log(`Hay un erro ${error}`); // * Imprimir valor en consola deleditor o navegador 
 
-/**
- *  ! Tipos de datos  primitivos
- * * string : Cadena de texto
- * * number : Numeros
- * * boolean : Verdadero o falso
- * * Any : Cualquier tipo de dato
- *  * Array : Arreglo de datos
- * * Tuple : Arreglo de datos con tipos de datos definidos
- * * Void : Vacio
- * * Null : Nulo
- * * Undefined : Indefinido
- */
+//NOTE - Tipos de datos Primitivos
+// String: "Cadena de texto";
+// Number: "numberos";
+// Boolean: "True o False";
+// Any: "Cualquier tipo de dato";
+// Array: "Arreglo de datos";
+// Tuple: "Arreglo de datos  con tipos de datos definidos";
+// Void: "Vacio";
+// Null: "nulo";
+// Undefined: "Indefinido";
 
+//NOTE -  Instancias multiples de variables 
+let a: String, b: boolean, c: number;
 
-// ! Instancias multiples de varables
-let a:string, b:boolean, c:number;
 a = "Hola";
 b = true;
 c = 30.9;
- //! Tipos mas Complejos
-let listaTareas:string[] = ["Tarea 1", "Tarea 2", "Tarea 3"];
 
-let valores: (string | number | boolean) []= [false, "hola",true,49];
+// Tipos mas complejos
+let listaTareas: string[] = ["Tarea1", "Tarea2", "Tarea3"];
+let valor: (string | number | boolean)[] = [false, "hola", true, 49];
 
-// ! Enumerados
-// * Enum : Conjunto de constantes
-
+//NOTE - Enumerados  Enum: Conjunto de cantantes
 enum Estado {
-    "Pendiente"= "P",
+    "Pendiente" = "P",
     "EnProceso" = "E",
-    "Terminado" = "T"
+    "Terminado" = "T",
 }
- enum PuestoCarrera{
-      "Ingeniero" = 1,
-      "Licenciado" ,
-      "Doctor" 
- }
+
+enum PuestoCarrera {
+    "Ingeniero" = 1,
+    "Licenciado",
+    "Doctor",
+}
 
 let estadoTarea: Estado = Estado.Pendiente;
 let puesto: PuestoCarrera = PuestoCarrera.Doctor;
 
-
-//! Inerfaces
-// * Definicion de una estructura de datos
+//NOTE - Interfaces  Definición de una estructura de datos
 interface Persona {
     nombre: string,
     apellido: string,
     edad: number,
-    estado: Estado
+    estado: Estado // se llama al enum 
 }
 
-//! Podemos Crear Varias que sigen la interfaces Persona
+// podemos crear varias que sigan la interface persona
 
-let persona1: Persona = {
-    nombre: "Jose",
-    apellido: "Madrid",
+let personal: Persona = {
+    nombre: "jose luis",
+    apellido: "Madrid Londoño",
     edad: 30,
-    estado: Estado.Pendiente
+    estado: Estado.Pendiente,
 }
-console.log("Prsona:",persona1.nombre, persona1.apellido, persona1.edad, persona1.estado);
+console.log("\nPersona:", personal.nombre, personal.apellido, 'Su edad es: ', personal.edad, 'Su estado esta en: ', personal.estado)
 
-// ! Asignacion multiples de variable
-
+// NOTE - Asignación multiple de variables
 let Mitarea = {
     titulo: "Mitarea",
     estado: Estado.EnProceso,
     urgencia: 1
 }
-// ! Factor Spread (Prpagacion)
+let { titulo, estado, urgencia } = Mitarea;
 
-// *En asignacin de variables
-let  { titulo, estado, urgencia} = Mitarea;
+//NOTE - ## Factor Spread (Propagacón) En asignación de variable 
 
 //  En Listas
-let listadecomprasLunes: string[]= ["leche","Patatas"];
+let listadecomprasLunes: string[] = ["leche", "Patatas"];
 let listadecomprasMartes: string[] = [...listadecomprasLunes, "Pan", "Huevos"]
-let listadecomprasMiercoles: string[] = ["Carnes","pescado"] 
+let listadecomprasMiercoles: string[] = ["Carnes", "pescado"]
 let listadelaSemana = [...listadecomprasLunes, ...listadecomprasMartes, ...listadecomprasMiercoles]
 
-// !   En Objectos 
-  let estadoApp = {
-     usuario : "Admin",
-     session: 3,
-     jwt: "bernsddff123****"
-  }
+// En objetos 
+let estadoApp = {
+    usuario: "Admin",
+    session: 3,
+    jwt: "bernsddff123****"
+}
 
-  // ! cambiar un valor por propagación 
-  let nuevoEstado ={
+// ! cambiar un valor por propagación 
+let nuevoEstado = {
     ...estadoApp,
     session: 4
-  }
-
-
-// ! Type de typeScripts
-
+}
+// NOTE - Types en typeScripts
 type ProductoType = {
     nombre: string,
     precio: number,
-    anio: number,
+    anio: number
 }
-
-let coche : ProductoType = {
+let coche: ProductoType = {
     nombre: "Audi",
     precio: 3000,
-    anio: 2020
+    anio: 2020,
 }
+// NOTE - Operarios ternarios 
+//Operarios ternarios
+console.log(coche.anio < 2010 ? `\nCoche:${coche.nombre} es Viejo` : `\nCoche:${coche.nombre} es Nuevo \n`);
 
-// ! operadores ternarios
-console.log(coche.anio <2010 ?`Coche:${coche.nombre} es Viejo`:`Coche:${coche.nombre} es Nuevo`);
+//NOTE - Condicionales 
+//Es una estructura de control condicional que permite ejecutar un bloque de código si una condición específica se evalúa como verdadera. Funciona de manera similar a JavaScript, pero con las ventajas de tipado estático que ofrece TypeScript.
 
 // ! condiciones   if-else
 if (error) {
-    console.log("Hay un error");  
+    console.log("Hay un error \n");
 
-}else{
-    console.log("No hay error");
+} else {
+    console.log("No hay error \n");
 }
 
 //! If-elsIf-else
 
-if(coche.anio < 2010){
+if (coche.anio < 2010) {
     console.log(`Coche:${coche.nombre} es Viejo`);
 
-}else if(coche.anio === 2010) {
-    console.log(`Coche:${coche.nombre} es Medio Viejo`); 
-}else{
+} else if (coche.anio === 2010) {
+    console.log(`Coche:${coche.nombre} es Medio Viejo`);
+} else {
     console.log(`Coche:${coche.nombre} es Nuevo`);
 }
 
-
-
-//  ! Switch
-
-switch (persona1.estado) {
-    case Estado.Terminado: 
-        console.log("La persona termino su tarea")
+// NOTE - Elemento Switch 
+switch (personal.estado) {
+    case Estado.Terminado:
+        console.log("\nLa persona termino su tarea")
         break;
     case Estado.Pendiente:
-        console.log("La persona tiene incompleta su tarea")
+        console.log("\nLa persona tiene incompleta su tarea")
         break;
     case Estado.EnProceso:
-        console.log("La persona acabo de iniciar  su tarea")
+        console.log("\nLa persona acabo de iniciar  su tarea")
         break;
     default:
         break;
 }
-
-// ! blucles
-
-let listaTareasNuevas: Persona[]=[
+// NOTE - Bucles 
+// Puedes utilizar varios tipos de bucles para iterar sobre datos o realizar tareas repetitivas
+let listaTareasNuevas: Persona[] = [
     {
         nombre: "Julio cesar",
         apellido: "Acosta lopez",
@@ -197,55 +179,247 @@ let listaTareasNuevas: Persona[]=[
 for (let index = 0; index < listaTareasNuevas.length; index++) {
     const tarea = listaTareasNuevas[index];
     console.log(`${index} - ${tarea.nombre}`)
-    
+
 }
 // !   ForEach
-listaTareasNuevas.forEach((tarea: Persona, index: number,)=> {
+listaTareasNuevas.forEach((tarea: Persona, index: number,) => {
     console.log(`${index} - ${tarea.nombre}`)
 })
 
 
 //  ! Bucle While
 
-while (persona1.estado != Estado.Terminado) {
-    persona1.edad++;
-    if ( persona1.edad == 100 ){
-        persona1.estado= Estado.Terminado
+while (personal.estado == Estado.Terminado) {
+    personal.edad++;
+    if (personal.edad == 10) {
+        personal.estado = Estado.Terminado
         break;
-    }else{
-        persona1.edad ++;
+    } else {
+        personal.edad++;
     }
 }
 
 // !  Do while  ( se ejecuta al menos una vecez)
 do {
-    persona1.edad ++;
-    persona1.estado= Estado.Terminado
-    
-} while(persona1.estado != Estado.Terminado);
+    personal.edad++;
+    personal.estado = Estado.Terminado
 
+} while (personal.estado != Estado.Terminado);
 
-// !Funciones
-/**
- *  ? Funcion que muestra un saludo por consola
- */
-function saludar (){
-    let nombre = "Maria fernanda"
-    console.log( `Hola Mundo! ${nombre}`)
+// NOTE - Funciones
+
+// ------------------------------
+// ✅ Función: saludar
+// 🔧 Tipo: Función normal
+// 🎯 Propósito: Muestra un saludo básico sin parámetros
+function saludar() {
+    let nombre = " Maria Fernanda";
+    console.log(`Hola Mundo! ${nombre}`);
 }
-// ! Invocacion de la funcion 
-saludar()
+saludar();
 
-/**
- * 
- * @param nombre 
- */
-function saludarConparametros(nombre:string){
-  console.log( `Hola Mundo! ${nombre}`)
+// ------------------------------
+// ✅ Función: saludarConParametros
+// 🔧 Tipo: Función normal
+// 🎯 Propósito: Muestra un saludo con nombre personalizado
+function saludarConParametros(nombre: string) {
+    console.log(`Hola Mundo! ${nombre}`);
 }
-saludarConparametros("Martin jose")
-// Sobrecarga de funciones
+saludarConParametros("Martin jose");
 
-// Funciones asincronas
+// ------------------------------
+// ✅ Función: despedirPersona
+// 🔧 Tipo: Función normal con parámetro por defecto
+// 🎯 Propósito: Muestra una despedida con nombre por defecto
+function despedirPersona(nombre: string = " Jose luis ") {
+    console.log(`¡Adios, ${nombre}`);
+}
+despedirPersona();
+despedirPersona('Alba');
 
-// Funciones Generadoras
+// ------------------------------
+// ✅ Función: despedirPersonaOpcional
+// 🔧 Tipo: Función normal con parámetro opcional
+// 🎯 Propósito: Muestra una despedida opcionalmente personalizada
+function despedirPersonaOpcional(nombre?: string) {
+    if (nombre) {
+        console.log(`Adios, ${nombre}`);
+    } else {
+        console.log(`¡Adios`);
+    }
+}
+despedirPersonaOpcional();
+despedirPersonaOpcional('Juanjose');
+
+// ------------------------------
+// ✅ Función: variosParametros
+// 🔧 Tipo: Función normal con parámetros opcionales y por defecto
+// 🎯 Propósito: Muestra nombre, apellido (si aplica) y edad
+function variosParametros(nombre: string, apellidos?: string, edad: number = 30) {
+    if (apellidos) {
+        console.log(`${nombre} ${apellidos} tiene ${edad} años`);
+    } else {
+        console.log(`${nombre} tiene ${edad} años`);
+    }
+}
+variosParametros('martin');
+variosParametros('martin', 'san josé');
+variosParametros('martin', undefined, 30);
+variosParametros('martin', 'san josé', 35);
+variosParametros("valentino", "londoño", 15);
+
+// ------------------------------
+// ✅ Función: ejmploVariosTipos
+// 🔧 Tipo: Función normal con unión de tipos
+// 🎯 Propósito: Verifica si el parámetro es string o number
+function ejmploVariosTipos(a: string | number) {
+    if (typeof a === 'string') {
+        console.log('A es un string');
+    } else if (typeof a === 'number') {
+        console.log('A es un number');
+    } else {
+        console.log('A no es un string ni tampoco un number');
+        throw Error('A no es un string ni tampoco un number');
+    }
+}
+ejmploVariosTipos('sepulveda');
+ejmploVariosTipos(2);
+
+// ------------------------------
+// ✅ Función: ejemploReturn
+// 🔧 Tipo: Función normal con retorno
+// 🎯 Propósito: Devuelve el nombre completo
+function ejemploReturn(nombre: string, apellidos: string): string {
+    return `${nombre} ${apellidos}`;
+}
+const nombreCompleto = ejemploReturn('Manuel', 'campo');
+console.log(nombreCompleto);
+
+// ------------------------------
+// ✅ Función: ejmploMiltipleParams
+// 🔧 Tipo: Función normal con parámetros rest
+// 🎯 Propósito: Muestra múltiples nombres
+function ejmploMiltipleParams(...nombres: string[]): void {
+    nombres.forEach(nombre => {
+        console.log(nombre);
+    });
+}
+ejmploMiltipleParams('Gilma');
+ejmploMiltipleParams("gilma", "rosa", "Juan", "Alba");
+
+const listasNombre = ["Roma", "minios"];
+ejmploMiltipleParams(...listasNombre);
+
+// ------------------------------
+// ✅ Función: ejemploParamsLisra
+// 🔧 Tipo: Función normal
+// 🎯 Propósito: Muestra un listado de nombres desde un array
+function ejemploParamsLisra(nombres: string[]) {
+    nombres.forEach(nombre => {
+        console.log(nombre);
+    });
+}
+ejemploParamsLisra(listasNombre);
+
+// ------------------------------
+// ✅ Tipo personalizado: Empleados
+// 🔧 Tipo: Alias de tipo (type)
+// 🎯 Propósito: Representa la estructura de un empleado
+type Empleados = {
+    nombre: string;
+    apellido: string;
+    edad: number;
+};
+
+let empleadosHogar: Empleados = {
+    nombre: "Pedro Nel",
+    apellido: "Campo",
+    edad: 80
+};
+
+// ------------------------------
+// ✅ Función: datosPerson
+// 🔧 Tipo: Función flecha
+// 🎯 Propósito: Devuelve una descripción del empleado
+const datosPerson = (empleado: Empleados) =>
+    `${empleado.nombre} ${empleado.apellido} tiene ${empleado.edad} años`;
+
+console.log(datosPerson(empleadosHogar));
+
+// ------------------------------
+// ✅ Función: datosEmpleados
+// 🔧 Tipo: Función flecha con lógica condicional
+// 🎯 Propósito: Indica si el empleado está en edad laboral o jubilación
+const datosEmpleados = (empleado: Empleados): string => {
+    if (empleado.edad > 70) {
+        return `Empleado ${empleado.nombre} está en edad de jubilación`;
+    } else {
+        return `Empleado ${empleado.nombre} está en edad laboral`;
+    }
+};
+console.log(datosEmpleados(empleadosHogar));
+
+// ------------------------------
+// ✅ Función: salario
+// 🔧 Tipo: Función flecha con callback
+// 🎯 Propósito: Ejecuta el callback si el empleado no está jubilado
+const salario = (empleado: Empleados, cobrar: () => string) => {
+    if (empleado.edad > 70) {
+        return;
+    } else {
+        cobrar(); // Callback llamado
+    }
+};
+salario(empleadosHogar, () => 'El trabajador va a cobrar');
+
+// ------------------------------
+// ✅ Función: EjemploAsync
+// 🔧 Tipo: Función async
+// 🎯 Propósito: Simula una tarea asincrónica y retorna un mensaje
+async function EjemploAsync(): Promise<string> {
+    await console.log("Tarea asíncrona");
+    console.log("Completado");
+    return 'Completado';
+}
+EjemploAsync()
+    .then((respuesta) => console.log("Respuesta", respuesta))
+    .catch((error) => console.log("Ha habido un error", error))
+    .finally(() => console.log("Todo ha terminado"));
+
+// ------------------------------
+// ✅ Función: ejemploGen
+// 🔧 Tipo: Función generadora (generator)
+// 🎯 Propósito: Genera números del 0 al 4 usando yield
+function* ejemploGen() {
+    let index = 0;
+    while (index < 5) {
+        yield index++;
+    }
+}
+let generadora = ejemploGen();
+console.log(generadora.next().value); // 0
+console.log(generadora.next().value); // 1
+console.log(generadora.next().value); // 2
+console.log(generadora.next().value); // 3
+
+// ------------------------------
+// ✅ Funciones: watcher y worker
+// 🔧 Tipo: Funciones generadoras con delegación yield*
+// 🎯 Propósito: Demuestran la delegación de generadores entre sí
+function* watcher(valor: number) {
+    yield valor;
+    yield* worker(valor);
+    yield valor + 4;
+}
+function* worker(valor: number) {
+    yield valor + 1;
+    yield valor + 2;
+    yield valor + 3;
+}
+let generetorSaga = watcher(0);
+console.log("Generadoras yield");
+console.log(generetorSaga.next().value); // 0
+console.log(generetorSaga.next().value); // 1
+console.log(generetorSaga.next().value); // 2
+console.log(generetorSaga.next().value); // 3
+console.log(generetorSaga.next().value); // 4
