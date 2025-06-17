@@ -1,6 +1,8 @@
 
 //SECTION - Practica De TypeScript
-
+// Importar determinada funcion de una libreria 
+const http = require('http')
+const Cookies = require('cookies')
 //NOTE - Variables
 
 var nombre: string = "jose luis "; // varable globlal
@@ -423,3 +425,86 @@ console.log(generetorSaga.next().value); // 1
 console.log(generetorSaga.next().value); // 2
 console.log(generetorSaga.next().value); // 3
 console.log(generetorSaga.next().value); // 4
+
+// NOTE - Sobrecarga de fuciones
+
+function mostrarError(error: string | number): void {
+    console.log("Ha habido un error ", error);
+}
+mostrarError(2);
+
+// NOTE - Persistencia de datos
+/**
+ * 1. localStorage --> Almacena los datos en el navegador (no se eliminan automáticamente)
+ * 2. SessionStore --> La diferencia radica en la sesión de navegador. es decir, los datos se persisten en la sesión de navegador
+ * 3. Cookies --> Tienen una fecah de caducudad y tambien un ambito de url
+ *
+ */
+
+// NOTE - LocalStorage y sessionStorage
+function guardar(): void {
+    localStorage.set("Nombre", "Martin");
+}
+function leer(): void {
+    let nombre = localStorage.get("nombre")
+}
+
+// NOTE - Cookies
+const Keys = ['Prueba']
+
+let server = http.createServer(function (req: any, res: any) {
+
+    // creamos la cookies
+    let cookies = new Cookies(req, res, { keys: Keys })
+
+    // leer cookies 
+    let cookiesget = cookies.get('cookiesget', { signed: true })
+
+    // seteamos cookies
+    cookies.set('cookiesget', new Date().toLocaleString(), { signed: true })
+
+    if (!cookiesget) {
+        res.setHeader('Content-Type', 'text/plain')
+        res.end('Welcome, first time visitor!')
+    } else {
+        res.setHeader('Content-Type', 'text/plain')
+        res.end('Welcome back! Nothing much changed since your last visit at ' + cookiesget + '.')
+    }
+})
+server.listen(3000, function () {
+    console.log('Visit us at http://127.0.0.1:3000/ !')
+})
+
+// NOTE -  clase temporizador
+
+class Temporizador {
+    public terminar?: ( tiempo:any) => void;
+
+    public empezar(): void {
+        setTimeout(() => {
+            // Comprobamos que exista la funcion terminar como callback
+            if (!this.terminar) return;
+
+            // Cuando haya pasado el tiempo, se ejecutara la funcion terminar
+            const fechaFormateada = new Date(Date.now()).toLocaleString('es-CO');
+            this.terminar(fechaFormateada);
+        }, 10000)
+    }
+}
+
+const miTemporizador: Temporizador = new Temporizador()
+
+// Definimos la funcion del callback a ejcutar cuando termine el tiempo
+
+miTemporizador.terminar = (tiempo: any)=>{
+    console.log("Evento Terminado",tiempo);
+}
+
+
+// Lanzamos el temporizador 
+miTemporizador.empezar(); // Se inicia el timeout y cuando termina se ejcuta  la funcion terminar()
+
+// setInterval(()=> console.log("tic-tock"),1000)
+
+//  eliminar la ejecucion de la funcion 
+delete miTemporizador.terminar;

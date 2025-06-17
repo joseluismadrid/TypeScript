@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "cookies": "^0.9.1",
+    "http": "^0.0.1-security",
     "rimraf": "^6.0.1"
   }
 }
